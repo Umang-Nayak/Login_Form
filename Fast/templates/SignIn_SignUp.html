@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Sign In / Sign Up</title>
+    <link rel="stylesheet" href="{% static 'register_CSS.css' %}" />
+</head>
+
+<body>
+
+        <div class="bg-img">
+            <div class="image-with-overlay">
+                <img class="img1" src="{% static 'BM/bg.jpg' %}" >
+            </div>
+        </div>
+
+
+
+
+        <div class="book-mania">
+            <div class="book-mania-name">
+                Book Mania
+            </div>
+            <div class="book-mania-logo">
+                <img src="{% static 'BM/logo-2.png' %}" width="170">
+            </div>
+        </div>
+
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method="POST" action="/registration/">
+
+                {% csrf_token %}
+                <h2>Create Account <i class="fas fa-user-plus"></i></h2>
+                <br>
+                <input name="u_fname" type="text" placeholder="First Name">
+                <input name="u_lname" type="text" placeholder="Last Name">
+                <input name="u_email" type="email" placeholder="Email">
+                <input name="u_password" type="password" placeholder="Password">
+                <input name="u_contact" type="text" placeholder="Contact Number">
+                <input name="u_address" type="text" placeholder="Address">
+                <button>Sign Up</button>
+
+            </form>
+        </div>
+
+
+
+        <div class="form-container sign-in">
+            <form method="POST" action="/login/">
+                {% csrf_token %}
+                <h1>Sign In <i class="fas fa-sign-in-alt"></i></h1>
+                <br><br>
+
+                <input id="email" name="email" type="email" value="{{new_email_password}}" placeholder="Email">
+                <input id="password" name="password" type="password" value="{{cookie_u_password}}" placeholder="Password">
+                <a href="/forgot_password/"><b>Forget Your Password ?</b></a>
+
+                <div class="remember-container">
+                    <label for="remember"><b>Remember</b></label>
+                    <input type="checkbox" id="remember" name="remember">
+                </div>
+
+                {% for data in messages %}
+                    <span style="color:red"> <b> {{data}} </b> </span>
+                {% endfor %}
+                <button>Sign In</button>
+            </form>
+        </div>
+
+
+
+        <div class="toggle-container">
+            <div class="toggle">
+
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back <i class="fas fa-handshake"></i></h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello Friend <i class="fas fa-user-friends"></i></h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'general_Login_JavaScript.js' %}"></script>
+</body>
+
+</html>
